@@ -53,6 +53,7 @@ The module consists of two main components:
 4. Run the Task List Client by running `java TaskListClient`.
 5. Follow the instructions in the client application to perform task list operations.
 
+## 3. GRPC module: Messaging Service
 
 
 
