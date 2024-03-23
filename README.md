@@ -54,7 +54,42 @@ The module consists of two main components:
 5. Follow the instructions in the client application to perform task list operations.
 
 ## 3. GRPC module: Messaging Service
+This module implements a messaging service using gRPC, allowing clients to send text messages to specific recipients and retrieve received messages for a given user.
 
+### Overview
+
+The module consists of two main components:
+1. **Protocol Buffer Definition**: Defines the message types and service methods using Protocol Buffers (protobuf) syntax.
+2. **Server and Client Implementation**: Includes the server-side and client-side implementation of the messaging service using gRPC.
+
+### Protocol Buffer Definition
+
+The protocol buffer definition (`Messaging.proto`) specifies the following message types and service methods:
+- **TextMessage**: Represents a text message with fields for message ID, sender ID, recipient ID, and message text.
+- **MessagingService**: Defines two RPC methods:
+  - `SendMessage`: Allows clients to send a text message to a specified recipient.
+  - `GetReceivedMessages`: Allows clients to retrieve received messages for a given user ID.
+
+### Server Implementation
+
+The `MessageServiceImpl` class implements the server-side logic for the messaging service:
+- `sendMessage`: Handles the `SendMessage` RPC method, including message sending logic and response construction.
+- `getReceivedMessages`: Handles the `GetReceivedMessages` RPC method, including retrieving received messages for the given user ID and sending them through the stream.
+
+### Client Implementation
+
+The `MessageClient` class provides a client application to interact with the messaging service:
+- Creates a gRPC channel to connect to the server.
+- Creates a stub for making RPC calls to the server.
+- Calls the `SendMessage` RPC method to send a text message to a recipient.
+- Handles any exceptions that occur during the RPC call and shuts down the channel after use.
+
+### How to Run
+
+1. Compile the Protocol Buffer definition file (`Messaging.proto`) to generate Java classes using `protoc`.
+2. Compile the Java source files for the server (`MessageServiceImpl.java`) and client (`MessageClient.java`).
+3. Start the gRPC server by running `MessageServiceImpl.main()`.
+4. Run the client application (`MessageClient.main()`) to send messages or retrieve received messages.
 
 
 
