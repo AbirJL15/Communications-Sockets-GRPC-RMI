@@ -6,20 +6,21 @@ import java.net.Socket;
 public class Server {
     private ServerSocket serverSocket;
 
-
+    // Constructor to initialize the ServerSocket
     public Server(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
     }
-
+    // Method to start the server and listen for incoming connections
     public void start_Server() { //to keep our server running
         try {
             System.out.println("Waiting for connections .. ");
+            // Continuously listen for connections until the server socket is closed
             while (!serverSocket.isClosed()){
-
-                Socket socket =serverSocket.accept();//waiting for a client to connect, a blocking method
+                // Accept incoming client connection
+                Socket socket =serverSocket.accept();
                 System.out.println("A new client has connected ");
+                // Create a new thread for handling the client
                 ClientHandler clientHandler = new ClientHandler(socket);//responsible for communcating with the client
-
                 Thread thread = new Thread(clientHandler);
                 thread.start();
             }
@@ -42,7 +43,7 @@ public class Server {
 
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket(1234); //server listening for clients on this port number
-        Server server = new Server(serverSocket);
-        server.start_Server();
+        Server server = new Server(serverSocket);// Create a new server instance
+        server.start_Server();// Start the server
     }
 }

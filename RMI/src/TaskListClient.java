@@ -6,20 +6,21 @@ import java.util.List;
 public class TaskListClient {
     public static void main(String[] args) {
         try {
-            // Récupération du registre RMI sur localhost et le port 1099
+            // Locate RMI registry on localhost and port 1099 (Récupération du registre RMI)
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-            // Recherche de l'objet distant TaskListServer dans le registre
+            // Look up the RemoteTaskList object from the registry
             RemoteTaskList taskList = (RemoteTaskList) registry.lookup("TaskListServer");
 
-            // Exemple d'utilisation :
-            taskList.addTask("Faire les courses");
-            taskList.addTask("Préparer le rapport");
-            taskList.addTask("Faire du sport");
+            // Example of list usage
+            taskList.addTask("Do the groceries");
+            taskList.addTask("Study");
+            taskList.addTask("Workout");
+            taskList.addTask("Go shopping");
 
-            taskList.removeTask("Faire les courses");
-
+            taskList.removeTask("Go shopping");
+            // Getting all tasks
             List<String> allTasks = taskList.getAllTasks();
-            System.out.println("Liste des tâches : ");
+            System.out.println("TO DO LIST : ");
             for (String task : allTasks) {
                 System.out.println(task);
             }
