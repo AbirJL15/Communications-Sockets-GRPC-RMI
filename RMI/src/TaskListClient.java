@@ -17,7 +17,7 @@ public class TaskListClient {
             taskList.addTask("Workout");
             taskList.addTask("Go shopping");
 
-            taskList.removeTask("Go shopping");
+            //taskList.removeTask("Go shopping");
             // Getting all tasks
             List<String> allTasks = taskList.getAllTasks();
             System.out.println("TO DO LIST : ");

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RemoteTaskListImpl extends UnicastRemoteObject implements RemoteTaskList {
+
+
     private List<String> taskList;
     // Constructor to initialize the task list
     public RemoteTaskListImpl() throws RemoteException {
